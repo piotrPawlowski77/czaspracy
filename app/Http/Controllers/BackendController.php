@@ -81,13 +81,15 @@ class BackendController extends Controller
     //formularz z edycja zmiany
     public function workPanel()
     {
-        
+        return view('backend.workPanel');
     }
 
     //formularz z edycja zmiany
-    public function deleteWork()
+    public function deleteWork($id)
     {
+        $this->bR->deleteWork($id);
 
+        return redirect()->back()->with('message', 'Zmiana została usunięta.');
     }
 
 }

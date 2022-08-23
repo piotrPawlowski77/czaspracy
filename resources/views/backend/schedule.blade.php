@@ -62,7 +62,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">{{ $work->work_day_in }} {{ $work->work_day_out }} {{ $work->work_day_in }} {{ $work->work_time_in }} {{ $work->work_time_out }}</h5>
-                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteWrok', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>
+                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteWork', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>
 
                     </div>
 

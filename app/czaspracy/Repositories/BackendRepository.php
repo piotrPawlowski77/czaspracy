@@ -44,5 +44,9 @@ class BackendRepository implements BackendRepositoryInterface
         return User::with('works')->has('works')->get();
     }
 
+    public function deleteWork($id)
+    {
+        return Work::where('id', $id)->delete();
+    }
 
 }
