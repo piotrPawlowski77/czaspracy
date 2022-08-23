@@ -23,6 +23,9 @@ Route::group(['prefix' => 'admin'], function (){
 
     Route::get('/', [\App\Http\Controllers\BackendController::class, 'index'])->name('adminHome');
     Route::match(['GET', 'POST'],'/setSchedule', [\App\Http\Controllers\BackendController::class, 'setSchedule'])->name('setSchedule');
+    Route::match(['GET', 'POST'],'/schedule', [\App\Http\Controllers\BackendController::class, 'schedule'])->name('schedule');
+    Route::match(['GET', 'POST'], '/workPanel/{id?}', [\App\Http\Controllers\BackendController::class, 'workPanel'])->name('workPanel');
+    Route::get('/deleteWork/{id}', [\App\Http\Controllers\BackendController::class, 'deleteWork'])->name('deleteWork');
 
 });
 

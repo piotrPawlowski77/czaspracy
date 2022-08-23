@@ -65,4 +65,29 @@ class BackendController extends Controller
 
         return view('backend.setSchedule', compact('user', 'allUsers'));
     }
+
+
+    public function schedule()
+    {
+        //zalogowany uzytkownik
+        $userAuth = Auth::user();
+
+        //zmienna zawiera liste użytkowników, ktorzy maja zmiany
+        $users = $this->bR->getAllUsersHaveShifts();
+
+        return view('backend.schedule', compact('userAuth', 'users'));
+    }
+
+    //formularz z edycja zmiany
+    public function workPanel()
+    {
+        
+    }
+
+    //formularz z edycja zmiany
+    public function deleteWork()
+    {
+
+    }
+
 }

@@ -6,6 +6,8 @@ use App\czaspracy\Interfaces\BackendRepositoryInterface;
 use App\Models\User;
 use App\Models\Work;
 
+//komunikacja z BD
+
 class BackendRepository implements BackendRepositoryInterface
 {
     public function getAllUsers()
@@ -34,6 +36,12 @@ class BackendRepository implements BackendRepositoryInterface
     public function getUserWorksById($enterUser)
     {
         return Work::where('user_id', $enterUser)->get();
+    }
+
+    public function getAllUsersHaveShifts()
+    {
+        //zwroc liste all userow co maja zmiany
+        return User::with('works')->has('works')->get();
     }
 
 

@@ -9,6 +9,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('setSchedule') }}">Ustaw grafik</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('schedule') }}">Lista zmian</a>
+                </li>
             </ul>
             <form class="d-flex removeMarker">
                 <!-- Authentication Links -->

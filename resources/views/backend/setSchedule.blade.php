@@ -86,6 +86,7 @@
                 <label for="work_time_in" class="col-sm-2 col-form-label">Czas od</label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control-sm" id="work_time_in" name="work_time_in">
+
                 </div>
             </div>
 
@@ -95,6 +96,7 @@
                     <input type="time" class="form-control-sm" id="work_time_out" name="work_time_out">
                 </div>
             </div>
+
 
             <button type="submit" class="btn btn-success">Zapisz</button>
 
