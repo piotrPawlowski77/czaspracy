@@ -49,4 +49,16 @@ class BackendRepository implements BackendRepositoryInterface
         return Work::where('id', $id)->delete();
     }
 
+    //znajdz zmiane
+    public function getCurrentEditWork($id)
+    {
+        return Work::find($id);
+    }
+
+    //znajdz usera dla konkretnej zmiany
+    public function getCurrentEditUserByWorkId($id)
+    {
+        return User::where('id', $id)->get();
+    }
+
 }

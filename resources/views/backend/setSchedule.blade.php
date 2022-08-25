@@ -27,18 +27,6 @@
                     </div>
                 </div>
             </div>
-
-{{--            <div class="row">--}}
-{{--                <div class="alert alert-info alert-dismissible fade show col-sm-6 offset-sm-3 text-center" role="alert">--}}
-
-{{--                    <p>{{ \Illuminate\Support\Facades\Session::get('message') }}</p>--}}
-
-{{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
         @endif
 
         @if ($errors->any())
@@ -71,21 +59,21 @@
             <div class="row mb-3">
                 <label for="work_day_in" class="col-sm-2 col-form-label">Data od</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control-sm" id="work_day_in" name="work_day_in">
+                    <input type="date" class="form-control-sm" id="work_day_in" name="work_day_in" value="{{ old('work_day_in') }}">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="work_day_out" class="col-sm-2 col-form-label">Data do</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control-sm" id="work_day_out" name="work_day_out">
+                    <input type="date" class="form-control-sm" id="work_day_out" name="work_day_out" value="{{ old('work_day_out') }}">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="work_time_in" class="col-sm-2 col-form-label">Czas od</label>
                 <div class="col-sm-10">
-                    <input type="time" class="form-control-sm" id="work_time_in" name="work_time_in">
+                    <input type="time" class="form-control-sm" id="work_time_in" name="work_time_in" value="{{ old('work_time_in') }}">
 
                 </div>
             </div>
@@ -93,7 +81,7 @@
             <div class="row mb-3">
                 <label for="work_time_out" class="col-sm-2 col-form-label">Czas do</label>
                 <div class="col-sm-10">
-                    <input type="time" class="form-control-sm" id="work_time_out" name="work_time_out">
+                    <input type="time" class="form-control-sm" id="work_time_out" name="work_time_out" value="{{ old('work_time_out') }}">
                 </div>
             </div>
 

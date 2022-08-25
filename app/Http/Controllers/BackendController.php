@@ -40,6 +40,10 @@ class BackendController extends Controller
         //jesli post - insert do bazy z formularza
         if($request->isMethod('post'))
         {
+
+            //zapis do sesji aktualnych wartosci inputow - na nastepny request
+            $request->flash();
+
             //zapis danych - walidacja
             $workData = $this->bG->saveWorkData($request);
 
@@ -79,12 +83,26 @@ class BackendController extends Controller
     }
 
     //formularz z edycja zmiany
-    public function workPanel()
+    public function workPanel($id = null, Request $request)
     {
+
+        //KIEDY REQUEST JEST GET: tworzenie/edycja
+        //jesli $id nie jest null
+        if($id)
+        {
+            //edytuje istniejaca zmiane
+            return view('backend.workPanel', ['work'=>$this->bR->getCurrentEditWork($id), 'user'=>$this->bR->getCurrentEditUserByWorkId($id)]);
+        }
+
+
+        dd($request);
+
+        //$request->input('work_day_in');
+
         return view('backend.workPanel');
     }
 
-    //formularz z edycja zmiany
+    //formularz z usunieciem zmiany
     public function deleteWork($id)
     {
         $this->bR->deleteWork($id);

@@ -53,96 +53,69 @@
 
         <a href="{{ route('adminHome') }}">Powrót</a>
 
-        @foreach($users as $user)
+{{--        @foreach($users as $user)--}}
 
-            <div class="card bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Zmiany użytkownika {{$user->name}} {{$user->surname}}</div>
+{{--            <div class="card bg-light mb-3" style="max-width: 18rem;">--}}
+{{--                <div class="card-header">Zmiany użytkownika {{$user->name}} {{$user->surname}}</div>--}}
+
+{{--                @foreach($user->works as $work)--}}
+
+{{--                    <div class="card-body">--}}
+{{--                        <h5 class="card-title">{{ $work->work_day_in }} {{ $work->work_day_out }} {{ $work->work_day_in }} {{ $work->work_time_in }} {{ $work->work_time_out }}</h5>--}}
+{{--                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteWork', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>--}}
+
+{{--                    </div>--}}
+
+{{--                @endforeach--}}
+
+{{--            </div>--}}
+
+{{--        @endforeach--}}
+
+
+        @foreach($users as $user)
+            <!-- Table -->
+            <div class="table-responsive" >
+
+                <h1>Zmiany użytkownika {{$user->name}} {{$user->surname}}</h1>
 
                 @foreach($user->works as $work)
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $work->work_day_in }} {{ $work->work_day_out }} {{ $work->work_day_in }} {{ $work->work_time_in }} {{ $work->work_time_out }}</h5>
-                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteWork', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>
-
-                    </div>
+                    <table class="table table-fit mt-5 table-dark table-striped" >
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data od</th>
+                            <th scope="col">Data do</th>
+                            <th scope="col">Godzina od</th>
+                            <th scope="col">Godzina do</th>
+                            <th scope="col">Akcja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{ $work->work_day_in }}</td>
+                            <td>{{ $work->work_day_out }}</td>
+                            <td>{{ $work->work_time_in }}</td>
+                            <td>{{ $work->work_time_out }}</td>
+                            <td>
+                                <div class="d-flex flex-row mb-3">
+                                    <div>
+                                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info me-2">Edytuj</a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('deleteWork', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
                 @endforeach
 
             </div>
-
         @endforeach
-
-        <!-- Table -->
-        <div class="table-responsive" >
-            <table class="table table-fit mt-5 table-dark table-striped" >
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>myFirstName</td>
-                    <td>myLastName</td>
-                    <td>@myHandle</td>
-                    <td >
-                        <div class="d-flex flex-row  mb-3">
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-warning">edit</i>
-                                </button></div>
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-danger">delete</i>
-                                </button></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>anotherFirstName</td>
-                    <td>anotherLastName</td>
-                    <td>@anotherHandle</td>
-                    <td >
-                        <div class="d-flex flex-row mb-3">
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-warning">edit</i>
-                                </button></div>
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-danger">delete</i>
-                                </button></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-{{--        <div class="col-sm-12">--}}
-
-{{--            @foreach($cities as $city)--}}
-
-{{--                <div class="card bg-light mb-3" style="max-width: 18rem;">--}}
-{{--                    <div class="card-header">Miasto {{$city->name}}</div>--}}
-
-{{--                    @foreach($city->cars as $car)--}}
-
-{{--                        <div class="card-body">--}}
-{{--                            <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>--}}
-{{--                            <a href="{{ route('carPanel', ['id'=>$car->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteCar', ['id'=>$car->id]) }}" class="btn btn-danger">Usuń</a>--}}
-
-{{--                        </div>--}}
-
-{{--                    @endforeach--}}
-
-{{--                </div>--}}
-
-{{--            @endforeach--}}
-
-{{--        </div>--}}
-
-    </div>
 
 @endsection

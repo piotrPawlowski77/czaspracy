@@ -39,7 +39,7 @@
 @yield('content')
 
 <!--stopka-->
-@include('layouts.footer')
+{{--@include('layouts.footer')--}}
 
 <!--skrypty-->
 <script type="text/javascript" src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

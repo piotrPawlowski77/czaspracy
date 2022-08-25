@@ -8,7 +8,7 @@
             <h1>Edytuj Zmianę</h1>
         </header>
 
-        <p>Jesteś zalogowany jako: <mark>{{ $userAuth->name }} {{ $userAuth->surname }}</mark> </p>
+{{--        <p>Jesteś zalogowany jako: <mark>{{ $userAuth->name }} {{ $userAuth->surname }}</mark> </p>--}}
 
         <!-- Informacja z sesjii o komunikatach -->
         @if(\Illuminate\Support\Facades\Session::has('message'))
@@ -27,18 +27,6 @@
                     </div>
                 </div>
             </div>
-
-{{--            <div class="row">--}}
-{{--                <div class="alert alert-info alert-dismissible fade show col-sm-6 offset-sm-3 text-center" role="alert">--}}
-
-{{--                    <p>{{ \Illuminate\Support\Facades\Session::get('message') }}</p>--}}
-
-{{--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
         @endif
 
         @if ($errors->any())
@@ -53,96 +41,56 @@
 
         <a href="{{ route('adminHome') }}">Powrót</a>
 
-        @foreach($users as $user)
+        <div class="row">
 
-            <div class="card bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Zmiany użytkownika {{$user->name}} {{$user->surname}}</div>
+            <div class="col-sm-12">
 
-                @foreach($user->works as $work)
+                <form class="form-inline formSchedule" method="POST" action="{{ route('workPanel', ['id'=>$work->id]) }}" enctype="multipart/form-data">
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $work->work_day_in }} {{ $work->work_day_out }} {{ $work->work_day_in }} {{ $work->work_time_in }} {{ $work->work_time_out }}</h5>
-                        <a href="{{ route('workPanel', ['id'=>$work->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteWork', ['id'=>$work->id]) }}" class="btn btn-danger">Usuń</a>
+                    <label class="my-1 mr-2" for="enterUser">Wybierz użytkownika *</label>
+                    <select class="custom-select my-1 mr-sm-2" id="enterUser" name="enterUser">
 
+                            <option value="{{ $work->user_id }}">{{ $work->user->name }} {{ $work->user->surname }}</option>
+
+                    </select>
+
+                    <div class="row mb-3">
+                        <label for="work_day_in" class="col-sm-2 col-form-label">Data od *</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control-sm" id="work_day_in" name="work_day_in" value="{{ $work->work_day_in ?? old('work_day_in') }}">
+                        </div>
                     </div>
 
-                @endforeach
+                    <div class="row mb-3">
+                        <label for="work_day_out" class="col-sm-2 col-form-label">Data do *</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control-sm" id="work_day_out" name="work_day_out" value="{{ $work->work_day_out ?? old('work_day_out') }}">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="work_time_in" class="col-sm-2 col-form-label">Czas od *</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control-sm" id="work_time_in" name="work_time_in" value="{{ $work->work_time_in ?? old('work_time_in') }}">
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="work_time_out" class="col-sm-2 col-form-label">Czas do *</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control-sm" id="work_time_out" name="work_time_out" value="{{ $work->work_time_out ?? old('work_time_out') }}">
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success">Zapisz</button>
+
+                    {{ csrf_field() }}
+                </form>
 
             </div>
 
-        @endforeach
-
-        <!-- Table -->
-        <div class="table-responsive" >
-            <table class="table table-fit mt-5 table-dark table-striped" >
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>myFirstName</td>
-                    <td>myLastName</td>
-                    <td>@myHandle</td>
-                    <td >
-                        <div class="d-flex flex-row  mb-3">
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-warning">edit</i>
-                                </button></div>
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-danger">delete</i>
-                                </button></div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>anotherFirstName</td>
-                    <td>anotherLastName</td>
-                    <td>@anotherHandle</td>
-                    <td >
-                        <div class="d-flex flex-row mb-3">
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-warning">edit</i>
-                                </button></div>
-                            <div ><button type="button" class="btn">
-                                    <i class="material-icons text-danger">delete</i>
-                                </button></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-{{--        <div class="col-sm-12">--}}
-
-{{--            @foreach($cities as $city)--}}
-
-{{--                <div class="card bg-light mb-3" style="max-width: 18rem;">--}}
-{{--                    <div class="card-header">Miasto {{$city->name}}</div>--}}
-
-{{--                    @foreach($city->cars as $car)--}}
-
-{{--                        <div class="card-body">--}}
-{{--                            <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>--}}
-{{--                            <a href="{{ route('carPanel', ['id'=>$car->id]) }}" class="btn btn-info">Edytuj</a> <a href="{{ route('deleteCar', ['id'=>$car->id]) }}" class="btn btn-danger">Usuń</a>--}}
-
-{{--                        </div>--}}
-
-{{--                    @endforeach--}}
-
-{{--                </div>--}}
-
-{{--            @endforeach--}}
-
-{{--        </div>--}}
-
-    </div>
+        </div>
 
 @endsection
